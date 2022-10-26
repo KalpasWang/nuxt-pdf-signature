@@ -1,5 +1,5 @@
 <template>
-  <Tutorial />
+  <SignBoard :width="500" :height="300" />
 </template>
 
 <script>
