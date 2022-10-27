@@ -19,8 +19,10 @@
     <img width="250" height="150" class="border border-slate-800" />
 
     <div class="btn-group">
-      <button class="clear" @click="clear">Clear</button>
-      <button class="save">Save</button>
+      <button class="border px-4 py-2" @click="clear">Clear</button>
+      <button class="border bg-lime-500 px-4 py-2" @click="exportCanvas">
+        Save
+      </button>
     </div>
   </div>
 </template>
@@ -74,7 +76,6 @@ export default {
     },
     startPosition(e) {
       e.preventDefault()
-      console.log(e)
       this.isPainting = true
       // this.ctx.beginPath()
     },
@@ -98,6 +99,10 @@ export default {
     clear() {
       const canvas = this.$refs.canvas
       this.ctx.clearRect(0, 0, canvas.width, canvas.height)
+    },
+    exportCanvas() {
+      const signatureImg = this.$refs.canvas.toDataURL('image/png')
+      this.$emit('save', signatureImg)
     },
   },
 }
